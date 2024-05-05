@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smite Character Tiers</title>
+    <style>
+        /* CSS for the body and headings */
+        body {
+            background-color: purple;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            background-color: black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* CSS for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 2px solid black;
+            background-color: white;
+            z-index: 999;
+            color: black; /* Set text color to black */
+        }
+
+        /* CSS for the close button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Smite Character Tiers</h1>
+
+    <!-- Popup container -->
+    <div class="popup" id="popup">
+        <span class="close-btn" onclick="closePopup()">x</span>
+        <p>Welcome to SMITE.GG, the world's ONLY Smite tracker that doesn't track win rates!</p>
+    </div>
+
+    <script>
+        // JavaScript function to close the popup
+        function closePopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+
+        // Display the popup when the page is loaded
+        window.onload = function() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        };
+    </script>
+
+    <hr>
+
+    <!-- Display tiers -->
+    <div class="tier-section">
+        <div class="tier-header">
+            <h2>God Tier</h2>
+        </div>
+        <ul>
+            {% for god in god_tier %}
+            <li>{{ god }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="tier-section">
+        <div class="tier-header">
+            <h2>King Tier</h2>
+        </div>
+        <ul>
+            {% for god in king_tier %}
+            <li>{{ god }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="tier-section">
+        <div class="tier-header">
+            <h2>Soldier Tier</h2>
+        </div>
+        <ul>
+            {% for god in soldier_tier %}
+            <li>{{ god }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="tier-section">
+        <div class="tier-header">
+            <h2>Peasant Tier</h2>
+        </div>
+        <ul>
+            {% for god in peasant_tier %}
+            <li>{{ god }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h2>Add New God</h2>
+    <form action="/add_god" method="post">
+        <label for="god_name">God Name:</label>
+        <input type="text" id="god_name" name="god_name"><br><br>
+        <label for="stat1">Stat 1:</label>
+        <input type="text" id="stat1" name="stat1"><br><br>
+        <label for="stat2">Stat 2:</label>
+        <input type="text" id="stat2" name="stat2"><br><br>
+        <label for="stat3">Stat 3:</label>
+        <input type="text" id="stat3" name="stat3"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
